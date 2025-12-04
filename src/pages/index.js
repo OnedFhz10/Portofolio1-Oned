@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Portofolio Wandi | Frontend Developer</title>
+        <title>Portofolio Wandi | Software Engineer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Portofolio Wandi, Frontend Developer. Lihat karya, keahlian, dan pengalaman saya." />

@@ -5,27 +5,35 @@ const Certificates = () => {
   const certificates = [
     {
       id: 1,
-      title: "Belajar Dasar Pemrograman Web",
-      issuer: "Dicoding Indonesia",
-      date: "Januari 2024",
+      title: "AI For Jobs",
+      issuer: "Orbit Future Academy",
+      date: "Desember 2023",
       link: "#", // Link ke kredensial/sertifikat asli
-      image: "https://img.freepik.com/free-vector/certificate-template-design_23-2149422636.jpg" // Bisa ganti dengan foto sertifikat Anda di folder public
+      image: "/c1.png" // Bisa ganti dengan foto sertifikat Anda di folder public
     },
     {
       id: 2,
-      title: "React JS Frontend Web Development",
-      issuer: "Udemy",
-      date: "Maret 2024",
+      title: "Fullstack Web Development",
+      issuer: "Gamelab Indonesia",
+      date: "Juli 2024",
       link: "#",
-      image: "https://img.freepik.com/free-vector/modern-certificate-appreciation-template_1017-38686.jpg"
+      image: "/c2.png"
     },
     {
       id: 3,
-      title: "Bootcamp Fullstack Developer",
-      issuer: "Harisenin.com",
-      date: "Desember 2023",
+      title: "Bootcamp Front End Development",
+      issuer: "Alhazen Academy",
+      date: "Januari 2025",
       link: "#",
-      image: "https://img.freepik.com/free-vector/elegant-certificate-template_23-2149422634.jpg"
+      image: "/c3.png"
+    },
+    {
+      id: 4,
+      title: "Code Generation and Optimization",
+      issuer: "IBM SkillsBuild",
+      date: "Juni 2025",
+      link: "#",
+      image: "/c4.png"
     },
   ];
 

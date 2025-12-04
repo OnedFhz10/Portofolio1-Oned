@@ -13,7 +13,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
-              Wandi.
+              1DFHZ
             </Link>
           </div>
 
@@ -77,7 +77,7 @@ const Navbar = () => {
             <a href="#projects" onClick={() => setIsOpen(false)} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Project</a>
             
             <a 
-              href="/cv-wandi.pdf"
+              href="/cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)} 

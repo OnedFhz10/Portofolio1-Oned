@@ -21,13 +21,13 @@ const Hero = () => {
           <h2 className="text-2xl md:text-3xl text-gray-300 mb-6 font-semibold h-10">
             <TypeAnimation
               sequence={[
-                'Frontend Developer',
+                'Software Engineer',
                 1000,
-                'React Enthusiast',
+                'System Analyst',
                 1000,
-                'Freelancer',
+                'Graphic Designer',
                 1000,
-                'Tech Lover',
+                'Tech Enthusiast',
                 1000
               ]}
               wrapper="span"
@@ -38,12 +38,12 @@ const Hero = () => {
           </h2>
 
           <p className="text-gray-400 mb-8 leading-relaxed">
-            Saya seorang pengembang web yang bersemangat membangun antarmuka yang indah dan fungsional menggunakan teknologi modern seperti React dan Tailwind CSS.
+            Seorang Software Engineer yang terbiasa merancang dan membangun sistem yang fungsional, terstruktur, dan mudah dikembangkan untuk berbagai kebutuhan digital.
           </p>
           
           <div className="flex gap-4 justify-center md:justify-start">
             <a href="#projects" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full font-medium transition-colors">
-              Lihat Project
+              Project Saya
             </a>
             <a href="#contact" className="px-6 py-3 border border-gray-600 hover:border-blue-400 hover:text-blue-400 rounded-full font-medium transition-colors">
               Kontak Saya

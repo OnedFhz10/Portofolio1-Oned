@@ -16,7 +16,7 @@ const Footer = () => {
     },
     {
       name: "LinkedIn",
-      href: "#", // Masukkan Link LinkedIn
+      href: "https://www.linkedin.com/in/wandi-fahrizal/", // Masukkan Link LinkedIn
       color: "hover:text-blue-500",
       icon: (
         <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" className="w-6 h-6">
@@ -26,7 +26,7 @@ const Footer = () => {
     },
     {
       name: "Instagram",
-      href: "#", // Masukkan Link Instagram
+      href: "https://www.instagram.com/one_dfahryzal10/", // Masukkan Link Instagram
       color: "hover:text-pink-500",
       icon: (
         <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" className="w-6 h-6">
@@ -46,7 +46,7 @@ const Footer = () => {
     },
     {
       name: "Facebook",
-      href: "#", // Masukkan Link Facebook
+      href: "https://web.facebook.com/Onefahryzal.10", // Masukkan Link Facebook
       color: "hover:text-blue-600",
       icon: (
         <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" className="w-6 h-6">
@@ -66,7 +66,7 @@ const Footer = () => {
     },
     {
       name: "TikTok",
-      href: "#", // Masukkan Link TikTok
+      href: "https://www.tiktok.com/@triforge_tech", // Masukkan Link TikTok
       color: "hover:text-pink-400",
       icon: (
         <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" className="w-6 h-6">
@@ -76,7 +76,7 @@ const Footer = () => {
     },
     {
       name: "WhatsApp",
-      href: "https://wa.me/628123456789", // Ganti dengan nomor WA Anda (format: 628...)
+      href: "https://wa.me/6281564636621", // Ganti dengan nomor WA Anda (format: 628...)
       color: "hover:text-green-500",
       icon: (
         <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" className="w-6 h-6">
@@ -86,7 +86,7 @@ const Footer = () => {
     },
     {
       name: "Email",
-      href: "mailto:emailanda@contoh.com", // Masukkan Email
+      href: "mailto:one.dfahryzal10@gmail.com", // Masukkan Email
       color: "hover:text-red-400",
       icon: (
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
@@ -102,9 +102,9 @@ const Footer = () => {
         
         {/* Bagian Kiri: Copyright */}
         <div className="text-center md:text-left">
-          <h3 className="text-2xl font-bold text-white mb-2">Wandi.</h3>
+          <h3 className="text-2xl font-bold text-white mb-2">Wandi Fahryzal.</h3>
           <p className="text-sm">
-            &copy; {new Date().getFullYear()} Dibuat dengan Next.js & Tailwind CSS.
+            &copy; {new Date().getFullYear()} Software Engineer
           </p>
         </div>
 

@@ -17,13 +17,10 @@ const About = () => {
           <div data-aos="fade-right" data-aos-delay="200">
             <h3 className="text-2xl font-semibold mb-4 text-blue-300">Siapa Saya?</h3>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Hai! Saya Wandi, seorang pengembang web yang berbasis di Indonesia. 
-              Saya mulai belajar coding karena penasaran bagaimana website keren dibuat, 
-              dan sekarang saya fokus membangun pengalaman web yang cepat dan responsif.
+             Saya seorang Software Engineer yang suka memecahkan masalah melalui teknologi. Saya menikmati proses membangun aplikasi dari awal mulai dari memahami kebutuhan, mendesain alurnya, hingga menjadi sebuah produk yang benar-benar bisa dipakai.
             </p>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Saat ini saya sedang mendalami ekosistem React dan Next.js untuk membuat 
-              aplikasi web yang modern. Saya suka memecahkan masalah dan belajar teknologi baru.
+              Saya juga tertarik pada Machine Learning dan pernah membuat beberapa proyek seperti prediksi gaji dan klasifikasi gambar batik. Bagi saya, teknologi adalah alat untuk membantu orang bekerja lebih mudah dan efisien.
             </p>
           </div>
 
@@ -33,20 +30,20 @@ const About = () => {
             <div className="grid grid-cols-2 gap-4">
               {/* Skill Items */}
               <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors border border-gray-600">
-                <span className="font-bold text-lg block mb-1">HTML & CSS</span>
-                <span className="text-sm text-gray-400">Dasar Web</span>
+                <span className="font-bold text-lg block mb-1">Fullstack Development</span>
+                <span className="text-sm text-gray-400">Pengembangan aplikasi web dan mobile</span>
               </div>
               <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors border border-gray-600">
-                <span className="font-bold text-lg block mb-1">JavaScript</span>
-                <span className="text-sm text-gray-400">Interaksi & Logika</span>
+                <span className="font-bold text-lg block mb-1">System Analysis & Architecture</span>
+                <span className="text-sm text-gray-400">Perancangan arsitektur sistem</span>
               </div>
               <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors border border-gray-600">
-                <span className="font-bold text-lg block mb-1">React JS</span>
-                <span className="text-sm text-gray-400">Frontend Library</span>
+                <span className="font-bold text-lg block mb-1">Machine Learning & AI Integration</span>
+                <span className="text-sm text-gray-400">Perancangan model Machine Learning</span>
               </div>
               <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors border border-gray-600">
-                <span className="font-bold text-lg block mb-1">Tailwind CSS</span>
-                <span className="text-sm text-gray-400">Styling Cepat</span>
+                <span className="font-bold text-lg block mb-1">Application Deployment</span>
+                <span className="text-sm text-gray-400">Deployment aplikasi web dan mobile</span>
               </div>
             </div>
           </div>
