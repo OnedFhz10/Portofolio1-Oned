@@ -4,7 +4,7 @@ import { TypeAnimation } from 'react-type-animation';
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-900 text-white px-6 pt-20">
-      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-8 items-center">
+      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-12 items-center">
         
         {/* Bagian Teks (Kiri) */}
         <div className="text-center md:text-left" data-aos="fade-right">
@@ -13,31 +13,27 @@ const Hero = () => {
           </p>
           <h1 className="text-5xl md:text-7xl font-bold mb-4">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-              Wandi
+              Wandi Fahrizal
             </span>
           </h1>
           
-          {/* EFEK MENGETIK DI SINI */}
+          {/* Efek Mengetik */}
           <h2 className="text-2xl md:text-3xl text-gray-300 mb-6 font-semibold h-10">
             <TypeAnimation
               sequence={[
-                // Teks 1
                 'Frontend Developer',
-                1000, // Tunggu 1 detik
-                // Teks 2
+                1000,
                 'React Enthusiast',
                 1000,
-                // Teks 3
                 'Freelancer',
                 1000,
-                // Teks 4
                 'Tech Lover',
                 1000
               ]}
               wrapper="span"
               speed={50}
               repeat={Infinity}
-              style={{ display: 'inline-block', color: '#60A5FA' }} // Warna biru muda
+              style={{ display: 'inline-block', color: '#60A5FA' }}
             />
           </h2>
 
@@ -55,14 +51,22 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Bagian Gambar (Kanan) */}
-        <div className="flex justify-center" data-aos="zoom-in" data-aos-delay="200">
-          <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-gray-700 overflow-hidden shadow-2xl">
-            <img 
-              src="/profile.jpg" 
-              alt="Foto Profil" 
-              className="w-full h-full object-cover" 
-            />
+        {/* Bagian Gambar (Kanan) - GAYA 3D OFFSET FRAME */}
+        <div className="flex justify-center py-10" data-aos="zoom-in" data-aos-delay="200">
+          <div className="relative w-64 h-80 md:w-72 md:h-96">
+            
+            {/* Bingkai Belakang (Border Kosong) */}
+            <div className="absolute top-4 left-4 w-full h-full border-4 border-blue-500 rounded-lg"></div>
+            
+            {/* Gambar Depan */}
+            <div className="absolute top-0 left-0 w-full h-full bg-gray-800 rounded-lg overflow-hidden shadow-2xl hover:-translate-y-2 hover:-translate-x-2 transition-transform duration-300">
+              <img 
+                src="/profile.png" 
+                alt="Foto Profil" 
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" 
+              />
+            </div>
+
           </div>
         </div>
 

@@ -105,7 +105,7 @@ const TechStack = () => {
   ];
 
   return (
-    <section className="py-10 bg-gray-900 border-t border-b border-gray-800">
+    <section className="py-10 bg-gray-800 border-t border-b border-gray-700 shadow-xl relative z-10">
       <div className="text-center mb-8" data-aos="fade-down">
          <p className="text-gray-400 text-sm tracking-widest uppercase">Teknologi & Tools</p>
       </div>

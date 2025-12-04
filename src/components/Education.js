@@ -26,7 +26,7 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="py-20 bg-gray-800 text-white">
+    <section id="education" className="py-20 bg-gray-900 text-white border-t border-gray-800">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Judul - Fade Down */}

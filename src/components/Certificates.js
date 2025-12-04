@@ -30,7 +30,7 @@ const Certificates = () => {
   ];
 
   return (
-    <section id="certificates" className="py-20 bg-gray-800 text-white">
+    <section id="certificates" className="py-20 bg-gray-800 text-white border-t border-gray-700">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Judul Section */}
