@@ -1,7 +1,21 @@
 // src/components/TechStack.js
 import Marquee from "react-fast-marquee";
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 const TechStack = () => {
+  const { theme } = useTheme();
+  const [gradientColor, setGradientColor] = useState([255, 255, 255]); // Default Light (White)
+
+  // Efek untuk mengubah warna gradient marquee saat tema berubah
+  useEffect(() => {
+    if (theme === 'dark') {
+      setGradientColor([17, 24, 39]); // RGB untuk gray-900
+    } else {
+      setGradientColor([255, 255, 255]); // RGB untuk white
+    }
+  }, [theme]);
+
   const skills = [
     // --- FRONTEND ---
     {
@@ -26,8 +40,9 @@ const TechStack = () => {
     },
     {
       name: "Next.js",
+      // Icon: Hitam di Light, Putih di Dark
       icon: (
-        <svg viewBox="0 0 128 128" className="w-16 h-16 fill-white">
+        <svg viewBox="0 0 128 128" className="w-16 h-16 fill-gray-900 dark:fill-white transition-colors duration-300">
            <path d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64 64-28.7 64-64S99.3 0 64 0zm25.5 98.6l-36.9-47.6V91H42V36h10.3l37.2 48.1V36h10.5v62.6h-10.5z"/>
         </svg>
       )
@@ -66,7 +81,8 @@ const TechStack = () => {
     // --- DATABASE ---
     {
       name: "MySQL",
-      icon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" className="w-16 h-16 filter invert bg-white rounded-lg p-1" alt="MySQL" />
+      // Icon: Invert warna di Dark Mode agar terlihat jelas
+      icon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" className="w-16 h-16 dark:filter dark:invert dark:bg-white/10 rounded-lg p-1 transition-all duration-300" alt="MySQL" />
     },
     {
       name: "PostgreSQL",
@@ -84,8 +100,9 @@ const TechStack = () => {
     },
     {
       name: "GitHub",
+      // Icon: Hitam di Light, Putih di Dark
       icon: (
-        <svg viewBox="0 0 128 128" className="w-16 h-16 fill-white">
+        <svg viewBox="0 0 128 128" className="w-16 h-16 fill-gray-900 dark:fill-white transition-colors duration-300">
           <path d="M64 0C28.7 0 0 28.7 0 64c0 28.3 18.3 52.3 43.8 60.8 3.2.6 4.4-1.4 4.4-3.1v-10.9c-17.8 3.9-21.6-8.6-21.6-8.6-2.9-7.4-7.1-9.4-7.1-9.4-5.8-4 .4-3.9.4-3.9 6.4.5 9.8 6.6 9.8 6.6 5.7 9.8 15 7 18.7 5.3 1.6-4.1 2.2-7 4-8.6-14.2-1.6-29.1-7.1-29.1-31.6 0-7 2.5-12.7 6.6-17.2-.7-1.6-2.9-8.1.6-16.9 0 0 5.4-1.7 17.6 6.6 5.1-1.4 10.6-2.1 16-2.1s10.9.7 16 2.1c12.2-8.3 17.6-6.6 17.6-6.6 3.5 8.8 1.3 15.4.6 16.9 4.1 4.5 6.6 10.2 6.6 17.2 0 24.6-15 30-29.2 31.5 2.3 2 4.3 5.9 4.3 11.9v17.7c0 1.7 1.2 3.7 4.4 3.1 25.5-8.5 43.8-32.5 43.8-60.8C128 28.7 99.3 0 64 0z"/>
         </svg>
       )
@@ -105,15 +122,16 @@ const TechStack = () => {
   ];
 
   return (
-    <section className="py-10 bg-gray-800 border-t border-b border-gray-700 shadow-xl relative z-10">
+    // Background Dinamis
+    <section className="py-10 bg-white dark:bg-gray-800 border-t border-b border-gray-200 dark:border-gray-700 shadow-xl relative z-10 transition-colors duration-300">
       <div className="text-center mb-8" data-aos="fade-down">
-         <p className="text-gray-400 text-sm tracking-widest uppercase">Teknologi & Tools</p>
+         <p className="text-gray-600 dark:text-gray-400 text-sm tracking-widest uppercase">Teknologi & Tools</p>
       </div>
       
       <Marquee 
         gradient={true} 
-        gradientColor={[17, 24, 39]} // Warna bg-gray-900 agar transisi halus
-        speed={40} // Sedikit diperlambat agar lebih mudah dilihat
+        gradientColor={gradientColor} // Warna gradient dinamis
+        speed={40} 
         pauseOnHover={true}
       >
         <div className="flex items-center gap-12 px-8">
@@ -124,7 +142,7 @@ const TechStack = () => {
                 {skill.icon}
               </div>
               {/* Nama (Muncul saat hover) */}
-              <span className="mt-2 text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
+              <span className="mt-2 text-sm text-gray-600 dark:text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
                 {skill.name}
               </span>
             </div>
