@@ -37,10 +37,10 @@ const Education = () => {
   const pesantrenEducation = [
     {
       id: 1,
-      school: "SMA Pesantren Cintawana",
-      degree: "Jurusan IPA & Santri",
+      school: "Pondok Pesantren Cintawana",
+      degree: "Singaparna - Tasikmalaya",
       year: "2017 - 2020",
-      description: "Mendalami ilmu agama Islam (Fiqh, Tauhid, Akhlaq) beriringan dengan pendidikan formal IPA. Aktif sebagai Ketua Umum PMR."
+      description: "Mendalami ilmu agama Islam (Fiqh, Tauhid, Akhlaq) Aktif di organisasi sebagai pengurus bagian bendahara."
     },
     {
       id: 2,
@@ -81,6 +81,15 @@ const Education = () => {
       year: "2025",
       description: "Pelatihan yang berfokus pada teknik pembuatan kode secara efisien, optimal, dan sesuai standar industri."
     },
+
+    {
+      id: 5,
+      school: "Dicoding Indonesia",
+      degree: "Code Generation And Optimization",
+      year: "2025",
+      description: "Pelatihan yang berfokus pada teknik pembuatan kode secara efisien, optimal, dan sesuai standar industri."
+    },
+
   ];
 
   // Helper function untuk merender item timeline (agar kode lebih ringkas)
