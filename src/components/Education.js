@@ -1,162 +1,189 @@
-// src/components/Education.js
+import { useState, useEffect } from 'react';
+import { client } from '../sanity/lib/client';
 
 const Education = () => {
-  // 1. DATA PENDIDIKAN FORMAL (Sekolah Umum/Kuliah)
-  const formalEducation = [
-    {
-      id: 1,
-      school: "Universitas Al-Ghifari",
-      degree: "Sistem Informasi",
-      year: "2021 - 2025",
-      description: "Lulus dengan predikat Cum Laude (IPK 3.54). Aktif dalam organisasi UKM, Himpunan, dan BEM."
-    },
-    {
-      id: 2,
-      school: "SMA Pesantren Cintawana",
-      degree: "Sekolah Menengah Atas",
-      year: "2014 - 2017",
-      description: "Fokus pada pelajaran eksakta, aktif di organisasi PMR sebagai ketua umum."
-    },
-    {
-      id: 3,
-      school: "SMP Satu Atap 2 Taraju",
-      degree: "Sekolah Menengah Pertama",
-      year: "2014 - 2017",
-      description: "Fokus pada pelajaran sekolah, pernah mengikuti olimpiade catur tingkat kabupaten."
-    },
-    {
-      id: 3,
-      school: "SDN Indularang",
-      degree: "Sekolah Dasar",
-      year: "2009 - 2014",
-      description: "Fokus pada pelajaran sekolah, selalu menjadi juara 1 di kelas."
-    },
-  ];
+  const [eduData, setEduData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // State untuk Filter & Tampilan
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [showAll, setShowAll] = useState(false);
 
-  // 2. DATA PENDIDIKAN PESANTREN
-  const pesantrenEducation = [
-    {
-      id: 1,
-      school: "Pondok Pesantren Cintawana",
-      degree: "Singaparna - Tasikmalaya",
-      year: "2017 - 2020",
-      description: "Mendalami ilmu agama Islam (Fiqh, Tauhid, Akhlaq) Aktif di organisasi sebagai pengurus bagian bendahara."
-    },
-    {
-      id: 2,
-      school: "Pondok Pesantren Nurul Huda Sukamiskin",
-      degree: "Arcamanik - Kota Bandung",
-      year: "2017 - 2020",
-      description: "Mendalami ilmu agama Islam (Fiqh, Tauhid, Akhlaq) beriringan dengan perkuliahan. Aktif sebagai pengurus di bagian sekretaris."
-    },
-  ];
+  // Fetch Data
+  useEffect(() => {
+    const getEducation = async () => {
+      try {
+        // Fetch data diurutkan berdasarkan periode terbaru
+        const query = `*[_type == "education"] | order(period desc) {
+          _id,
+          school,
+          degree,
+          period,
+          description,
+          category
+        }`;
+        
+        const data = await client.fetch(query);
+        setEduData(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Gagal mengambil data education:", error);
+        setIsLoading(false);
+      }
+    };
 
-  // 3. DATA PENDIDIKAN NON-FORMAL (Bootcamp/Kursus)
-  const courses = [
-    {
-      id: 1,
-      school: "Orbit Future Academy",
-      degree: "AI For Jobs",
-      year: "2023",
-      description: "Program intensif 6 bulan. Mempelajari pengembangan AI dari mulai pengenalan algoritma machine learning dan deep learning."
-    },
-    {
-      id: 2,
-      school: "Gamelab Indonesia",
-      degree: "Fullstack Web Development",
-      year: "2024",
-      description: "Program intensif 6 bulan. Mempelajari pengembangan web dari sisi Front End dan Back End, serta database dan deployment."
-    },
-    {
-      id: 3,
-      school: "Alhazen Academy",
-      degree: "Front End Development",
-      year: "2024",
-      description: "Mini bootcamp yang membahas dasar-dasar Front End Development, termasuk HTML, CSS, JavaScript."
-    },
-    {
-      id: 4,
-      school: "IBM SkillsBuild",
-      degree: "Code Generation And Optimization",
-      year: "2025",
-      description: "Pelatihan yang berfokus pada teknik pembuatan kode secara efisien, optimal, dan sesuai standar industri."
-    },
+    getEducation();
+  }, []);
 
-    {
-      id: 5,
-      school: "Dicoding Indonesia",
-      degree: "Code Generation And Optimization",
-      year: "2025",
-      description: "Pelatihan yang berfokus pada teknik pembuatan kode secara efisien, optimal, dan sesuai standar industri."
-    },
+  const categories = ["All", "Formal", "Non-Formal", "Bootcamp"];
 
-  ];
+  // --- LOGIKA UTAMA DI SINI ---
+  let filteredData;
 
-  // Helper function untuk merender item timeline (agar kode lebih ringkas)
-  const renderItem = (item, borderColor, textColor, delay) => (
-    <div key={item.id} className="relative pl-8" data-aos="fade-up" data-aos-delay={delay}>
-      {/* Dot */}
-      <div className={`absolute -left-3.5 top-1 bg-gray-50 dark:bg-gray-900 border-4 ${borderColor} w-6 h-6 rounded-full`}></div>
+  if (activeCategory === "All") {
+    // Jika "All": Kita copy data lalu urutkan ulang
+    // Prioritaskan 'Formal' agar muncul di paling atas
+    filteredData = [...eduData].sort((a, b) => {
+      const isAFormal = a.category === 'Formal';
+      const isBFormal = b.category === 'Formal';
       
-      {/* Card: Putih di Light, Abu di Dark */}
-      <div className={`bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 hover:${textColor.replace('text', 'border')} hover:border transition-colors`}>
-        <span className={`text-xs ${textColor} font-semibold tracking-wide uppercase`}>{item.year}</span>
-        <h4 className="text-lg font-bold mt-1 mb-1 text-gray-900 dark:text-white">{item.school}</h4>
-        <p className="text-sm text-gray-700 dark:text-gray-300 font-medium mb-2">{item.degree}</p>
-        <p className="text-gray-600 dark:text-gray-400 text-xs leading-relaxed">{item.description}</p>
-      </div>
-    </div>
-  );
+      if (isAFormal && !isBFormal) return -1; // A (Formal) naik ke atas
+      if (!isAFormal && isBFormal) return 1;  // B (Formal) naik ke atas
+      return 0; // Jika sama, biarkan sesuai urutan waktu (default)
+    });
+  } else {
+    // Jika filter kategori lain, filter biasa
+    filteredData = eduData.filter((item) => item.category === activeCategory);
+  }
+
+  // Tentukan data yang ditampilkan (Semua atau Cuma 3)
+  const displayedData = showAll ? filteredData : filteredData.slice(0, 3);
+
+  const handleCategoryChange = (cat) => {
+    setActiveCategory(cat);
+    setShowAll(false); 
+  };
 
   return (
-    // Background Dinamis
-    <section id="education" className="py-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="education" className="py-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Judul Utama */}
+        {/* Header */}
         <div className="text-center mb-16" data-aos="fade-down">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Riwayat Pendidikan</h2>
-          <div className="w-20 h-1 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Perpaduan pendidikan akademis, karakter pesantren, dan kompetensi teknis.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Perjalanan Pendidikan</h2>
+          <div className="w-24 h-1 bg-purple-600 dark:bg-purple-500 mx-auto rounded-full"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">
+            Jejak langkah akademis dan pengalaman yang membentuk saya.
+          </p>
         </div>
 
-        {/* Grid 3 Kolom */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Filter Buttons */}
+        {!isLoading && (
+          <div className="flex flex-wrap justify-center gap-3 mb-16" data-aos="fade-up">
+            {categories.map((cat, index) => (
+              <button
+                key={index}
+                onClick={() => handleCategoryChange(cat)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                  activeCategory === cat
+                    ? "bg-purple-600 border-purple-600 text-white shadow-lg transform scale-105"
+                    : "bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-purple-400 hover:text-purple-600 dark:hover:text-white"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* TIMELINE CONTAINER */}
+        <div className="relative border-l-4 border-purple-200 dark:border-purple-900 ml-3 md:ml-6 space-y-12">
           
-          {/* KOLOM 1: FORMAL (BIRU) */}
-          <div>
-            <h3 className="text-xl font-bold mb-8 flex items-center gap-3 text-blue-600 dark:text-blue-400" data-aos="fade-right">
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-              Akademik Formal
-            </h3>
-            <div className="relative border-l-4 border-blue-600 ml-3 space-y-10">
-              {formalEducation.map((item, index) => renderItem(item, 'border-blue-600', 'text-blue-600 dark:text-blue-400', index * 100))}
+          {/* Skeleton Loading */}
+          {isLoading && [1, 2, 3].map((n) => (
+            <div key={n} className="mb-10 ml-8 relative animate-pulse">
+               <span className="absolute -left-11 top-1 bg-gray-300 w-6 h-6 rounded-full border-4 border-white"></span>
+               <div className="h-24 bg-gray-200 dark:bg-gray-800 rounded-lg"></div>
             </div>
-          </div>
+          ))}
 
-          {/* KOLOM 2: PESANTREN (UNGU) */}
-          <div>
-            <h3 className="text-xl font-bold mb-8 flex items-center gap-3 text-purple-600 dark:text-purple-400" data-aos="fade-up">
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" /></svg>
-              Pondok Pesantren
-            </h3>
-            <div className="relative border-l-4 border-purple-500 ml-3 space-y-10">
-              {pesantrenEducation.map((item, index) => renderItem(item, 'border-purple-500', 'text-purple-600 dark:text-purple-400', index * 100 + 100))}
+          {/* Data Items */}
+          {!isLoading && displayedData.map((item, index) => (
+            <div 
+              key={item._id} 
+              className="ml-8 md:ml-12 relative group"
+              data-aos="fade-up"
+              data-aos-delay={(index % 3) * 100} 
+            >
+              {/* Dot Timeline */}
+              <span className="absolute -left-[43px] md:-left-[59px] top-0 bg-white dark:bg-gray-900 border-4 border-purple-500 w-6 h-6 rounded-full group-hover:scale-125 group-hover:bg-purple-500 transition-all duration-300 z-10"></span>
+
+              {/* Konten Timeline */}
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    {item.school}
+                  </h3>
+                  <h4 className="text-lg font-medium text-purple-600 dark:text-purple-400 mt-1">
+                    {item.degree}
+                  </h4>
+                </div>
+                
+                {/* Tahun & Badge */}
+                <div className="flex flex-col sm:items-end mt-2 sm:mt-0 gap-2">
+                  <span className="inline-flex items-center px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs font-bold rounded-full">
+                    {item.period}
+                  </span>
+                  <span className={`text-xs border px-2 py-0.5 rounded ${
+                    item.category === 'Formal' 
+                      ? 'text-blue-500 border-blue-200 dark:text-blue-300 dark:border-blue-800' 
+                      : 'text-gray-400 border-gray-200 dark:border-gray-700'
+                  }`}>
+                    {item.category || "General"}
+                  </span>
+                </div>
+              </div>
+              
+              <p className="mt-3 text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base">
+                {item.description}
+              </p>
             </div>
-          </div>
-
-          {/* KOLOM 3: NON-FORMAL (HIJAU) */}
-          <div>
-            <h3 className="text-xl font-bold mb-8 flex items-center gap-3 text-green-600 dark:text-green-400" data-aos="fade-left">
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
-              Bootcamp & Kursus
-            </h3>
-            <div className="relative border-l-4 border-green-500 ml-3 space-y-10">
-              {courses.map((item, index) => renderItem(item, 'border-green-500', 'text-green-600 dark:text-green-400', index * 100 + 200))}
-            </div>
-          </div>
-
+          ))}
         </div>
+
+        {/* TOMBOL LIHAT SELENGKAPNYA */}
+        {!isLoading && filteredData.length > 3 && (
+          <div className="mt-12 ml-8 md:ml-12 text-center md:text-left">
+             <button 
+                onClick={() => setShowAll(!showAll)}
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 transition-colors"
+             >
+                {showAll ? (
+                  <>
+                    <span>Tampilkan Lebih Sedikit</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 group-hover:-translate-y-1 transition-transform">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                    </svg>
+                  </>
+                ) : (
+                  <>
+                    <span>Lihat Selengkapnya ({filteredData.length - 3} lagi)</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 group-hover:translate-y-1 transition-transform">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
+                  </>
+                )}
+             </button>
+          </div>
+        )}
+
+        {/* Pesan Kosong */}
+        {!isLoading && filteredData.length === 0 && (
+          <div className="text-center text-gray-500 dark:text-gray-400 py-10 ml-6">
+            <p>Tidak ada riwayat pendidikan di kategori ini.</p>
+          </div>
+        )}
+
       </div>
     </section>
   );
